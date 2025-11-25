@@ -1,0 +1,24 @@
+<div class="actions">
+    <a routerLink="/compose" class="btn-new">Compose</a>
+    <a routerLink="/sent" class="btn-sent">Sent Mails</a>
+</div>
+
+<div class="list">
+    @for (mail of mails; track mail.id){
+    <div class="card">
+        <p><strong>From:</strong>{{mail.fromEmail}}</p>
+        <p><strong>Subject:</strong>{{ mail.subject }} <small>{{mail.sentAt | date:'short'}}</small></p>
+        <p>{{mail.body}}</p>
+        <div class="card-header">
+            <h3>{{ mail.subject }} <small>{{ mail.sentAt | date:'short' }}</small></h3>
+
+            <button (click)="deleteMail(mail.id)" class="btn-delete">🗑️</button>
+        </div>
+
+        <p><strong>From:</strong> {{ mail.fromEmail }}</p>
+        <p>{{ mail.body }}</p>
+    </div>
+    } @empty {
+    <p>No mails found!</p>
+    }
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Sent Mails <a routerLink="/inbox" style="float: right; font-size: 14px;">Back to Inbox</a></h2>
+
+    <div class="list">
+        @for (mail of sentMails; track mail.id) {
+            <div class="card">
+                <p style="color: blue;"><strong>To:</strong>{{mail.toEmail}} </p>
+                <h3>{{mail.subject}} <small>{{mail.sentAt | date:'short'}}</small></h3>
+                <p> {{mail.body}} </p>
+            </div>
+        } @empty {
+            <p>No sent mails found!</p>
+        }
+    </div>
+</div>

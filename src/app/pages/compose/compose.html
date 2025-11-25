@@ -1,0 +1,9 @@
+<h2>Compose</h2>
+<form (ngSubmit)="sendMail()">
+    <input type="text" [(ngModel)]="toEmail" name="to" placeholder="To (Email)" required>
+    <input type="text" [(ngModel)]="subject" name="subject" placeholder="Subject" required>
+    <textarea [(ngModel)]="body" name="body" placeholder="Message" rows="5" required> </textarea>
+    <button type="submit" class="btn-send">Send</button>
+    <a routerLink="/inbox" class="btn-cancel">Cancel</a>
+
+</form>
