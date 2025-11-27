@@ -17,9 +17,12 @@ export class Register {
   name = '';
   email = '';
   password = '';
+  confirmpassword = '';
 
   onRegister(){
-    const user = { name: this.name, email: this.email, password: this.password};
+
+    if(this.confirmpassword == this.password){
+      const user = { name: this.name, email: this.email, password: this.password};
 
     this.authService.register(user).subscribe({
       next:() => {
@@ -31,5 +34,9 @@ export class Register {
         alert('Registration Failed! Email might already exist');
       }
     });
+    }
+    else{
+      alert('Password and confirm password not match!')
+    }
   }
 }

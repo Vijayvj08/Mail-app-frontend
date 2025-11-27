@@ -1,0 +1,5 @@
+/* Mail Body Spacing */
+.mail-content {
+    line-height: 1.8;
+    white-space: pre-wrap; /* Idhu New lines ah correct ah kaatum */
+}

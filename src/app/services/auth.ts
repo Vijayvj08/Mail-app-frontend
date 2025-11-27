@@ -27,4 +27,7 @@ export class Auth {
     return this.http.post(`${this.baseUrl}/register`,userData);
   }
 
+  resetPassword(data: any){
+    return this.http.post(`${this.baseUrl}/reset-password`,data);
+  }
 }

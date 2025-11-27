@@ -23,4 +23,8 @@ export class Mail {
   deleteMail(id: number){
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+
+  getMailById(id: number){
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
 }

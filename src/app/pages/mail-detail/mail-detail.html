@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  
+  <a routerLink="/inbox" class="btn btn-outline-secondary mb-3">
+    <i class="bi bi-arrow-left"></i> Back to Inbox
+  </a>
+
+  <div class="card shadow-lg border-0" *ngIf="mail">
+    
+    <div class="card-header bg-white p-4 border-bottom">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold text-primary m-0">{{ mail.subject }}</h3>
+        <span class="text-muted small">
+          {{ mail.sentAt | date:'medium' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="card-body p-4">
+      
+      <div class="d-flex align-items-center mb-4">
+        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" 
+             style="width: 50px; height: 50px; font-size: 20px;">
+             {{ mail.fromEmail.charAt(0).toUpperCase() }}
+        </div>
+        <div class="ms-3">
+          <h5 class="m-0 fw-bold">{{ mail.fromEmail }}</h5>
+          <small class="text-muted">to me</small>
+        </div>
+      </div>
+
+      <div class="mail-content fs-5 text-dark">
+        {{ mail.body }}
+      </div>
+
+    </div>
+
+    <div class="card-footer bg-light p-3 text-end">
+      <button class="btn btn-outline-primary me-2">
+        <i class="bi bi-reply"></i> Reply
+      </button>
+      <button class="btn btn-outline-secondary">
+        <i class="bi bi-forward"></i> Forward
+      </button>
+    </div>
+
+  </div>
+
+  <div *ngIf="!mail" class="text-center mt-5 text-muted">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-2">Loading mail...</p>
+  </div>
+
+</div>

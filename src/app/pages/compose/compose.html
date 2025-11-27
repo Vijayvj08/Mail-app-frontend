@@ -1,9 +1,50 @@
-<h2>Compose</h2>
-<form (ngSubmit)="sendMail()">
-    <input type="text" [(ngModel)]="toEmail" name="to" placeholder="To (Email)" required>
-    <input type="text" [(ngModel)]="subject" name="subject" placeholder="Subject" required>
-    <textarea [(ngModel)]="body" name="body" placeholder="Message" rows="5" required> </textarea>
-    <button type="submit" class="btn-send">Send</button>
-    <a routerLink="/inbox" class="btn-cancel">Cancel</a>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      
+      <div class="card shadow-lg border-0 rounded-3">
+        
+        <div class="card-header bg-dark text-white p-3 d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">
+            <i class="bi bi-pen-fill"></i> New Message
+          </h5>
+          <a routerLink="/inbox" class="btn-close btn-close-white" title="Close"></a>
+        </div>
 
-</form>
+        <div class="card-body p-4">
+          <form (ngSubmit)="sendMail()">
+            
+            <div class="form-floating mb-3">
+              <input type="email" [(ngModel)]="toEmail" name="to" class="form-control" id="toInput" placeholder="name@example.com" required>
+              <label for="toInput">To</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" [(ngModel)]="subject" name="sub" class="form-control" id="subjectInput" placeholder="Subject" required>
+              <label for="subjectInput">Subject</label>
+            </div>
+
+            <div class="mb-4">
+              <textarea [(ngModel)]="body" name="body" class="form-control message-box" rows="10" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              
+              <button type="submit" class="btn btn-primary px-4 py-2 fw-bold" [disabled]="isSending">
+                <span *ngIf="!isSending"><i class="bi bi-send-fill me-2"></i> Send</span>
+                <span *ngIf="isSending"><span class="spinner-border spinner-border-sm me-2"></span> Sending...</span>
+              </button>
+
+              <a routerLink="/inbox" class="btn btn-outline-secondary">
+                <i class="bi bi-trash"></i> Discard
+              </a>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

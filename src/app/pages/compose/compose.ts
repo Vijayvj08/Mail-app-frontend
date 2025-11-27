@@ -18,15 +18,22 @@ export class Compose {
   toEmail = '';
   subject = '';
   body = '';
-
+  isSending = false;
   sendMail(){
+    if(!this.toEmail || !this.subject || !this.body){
+      alert('Please fill all fields!');
+    }
+    this.isSending = true;
     const mail = { toEmail: this.toEmail, subject: this.subject, body: this.body};
     this.mailService.sendMail(mail).subscribe({
       next: ()=> {
         alert('Mail Sent!');
         this.router.navigate(['/inbox']);
       },
-      error: () => alert('Error sending mail')
+      error: () => {
+        alert('Error sending mail');
+      this.isSending = false;
+      }
     });
   }
 }

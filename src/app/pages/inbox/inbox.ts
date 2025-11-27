@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Mail } from '../../services/mail';
 import { Auth } from '../../services/auth';
 
@@ -13,12 +13,23 @@ import { Auth } from '../../services/auth';
 export class Inbox implements OnInit{
   mailService = inject(Mail);
   authService = inject(Auth);
+  router = inject(Router);
   mails: any[] = [];
 
   ngOnInit() {
+    this.loadMails();
+  }
+
+  loadMails() {
     this.mailService.getInbox().subscribe({
-      next: (data) => this.mails = data 
+      next: (data) => this.mails = data.reverse(),
+      error: (err) => console.error('Error fetching mails', err)
     });
+  }
+
+  // Row Click panna Full Mail open aagum
+  openMail(id: number) {
+    this.router.navigate(['/mail', id]);
   }
 
   deleteMail(id: number){

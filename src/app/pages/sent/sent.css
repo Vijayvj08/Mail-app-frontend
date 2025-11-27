@@ -1,6 +1,11 @@
-.container { max-width: 800px; margin: 20px auto; font-family: sans-serif; }
-.btn-logout { float: right; background: red; color: white; border: none; padding: 5px 10px; }
-.actions { margin-bottom: 20px; }
-.btn-new { background: green; color: white; padding: 10px; text-decoration: none; margin-right: 10px; }
-.btn-sent { background: orange; color: white; padding: 10px; text-decoration: none; }
-.card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; background: #f9f9f9; }
+/* Table Row Hover Effect */
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Delete Icon Hover Effect */
+.btn-light:hover {
+    background-color: #fee2e2 !important;
+    color: #dc2626 !important;
+}

@@ -1,5 +1,23 @@
-.container { max-width: 350px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; text-align: center; border-radius: 8px; }
-input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
-.btn-register { width: 100%; padding: 10px; background: green; color: white; border: none; cursor: pointer; border-radius: 4px; font-size: 16px; }
-.btn-register:hover { background: darkgreen; }
-a { color: blue; text-decoration: none; }
+/* register.component.css */
+.login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  /* Different image for Register page */
+  background-image: url('https://images.unsplash.com/photo-1762543410696-f0ac36534163?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+  background-size: cover;
+  background-position: center;
+  /* IMPORTANT: Ensures the image div has height */
+  min-height: 100vh; 
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
