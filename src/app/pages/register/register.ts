@@ -36,7 +36,7 @@ export class Register {
     });
     }
     else{
-      alert('Password and confirm password not match!')
+      alert("password doesn't match")
     }
   }
 }

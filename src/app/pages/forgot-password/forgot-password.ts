@@ -17,9 +17,13 @@ export class ForgotPassword {
 
   email = '';
   newPassword = '';
+  conformPassword = '';
    
   onReset(){
-    const data = {email: this.email, password: this.newPassword};
+
+    if(this.newPassword == this.conformPassword){
+
+      const data = {email: this.email, password: this.newPassword};
 
     this.authService.resetPassword(data).subscribe({
       next: () =>{
@@ -31,5 +35,10 @@ export class ForgotPassword {
       }
         
     });
+    }
+    
+    else{
+      alert("password doesn't match");
+    }
   }
 }
