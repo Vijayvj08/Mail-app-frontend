@@ -22,7 +22,13 @@ export class Login {
         this.authService.saveToken(res.token);
         this.router.navigate(['/inbox']);
       },
-      error: () => alert('Invalid Email or Password')
-    });
+      error: (err) => {
+        if(err.error && err.error.message){
+          alert(err.error.message);
+        }else{
+          alert("Login Failed!");
+        }
+  }
+});
   }
 }
