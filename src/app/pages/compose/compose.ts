@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Mail } from '../../services/mail';
 import { Auth } from '../../services/auth';
 
@@ -11,14 +11,34 @@ import { Auth } from '../../services/auth';
   templateUrl: './compose.html',
   styleUrl: './compose.css',
 })
-export class Compose {
+export class Compose implements OnInit{
+  
+  
   mailService = inject(Mail);
   authService = inject(Auth);
   router = inject(Router);
+  route = inject(ActivatedRoute);
+
   toEmail = '';
   subject = '';
   body = '';
   isSending = false;
+
+  ngOnInit() {
+    // Reply panni vandhirundha, data va edukkurom
+    this.route.queryParams.subscribe(params => {
+      if (params['to']) {
+        this.toEmail = params['to'];
+      }
+      if (params['subject']) {
+        this.subject = params['subject'];
+      }
+      if (params['body']) {
+        this.body = params['body'];
+      }
+    });
+  }
+
   sendMail(){
     if(!this.toEmail || !this.subject || !this.body){
       alert('Please fill all fields!');

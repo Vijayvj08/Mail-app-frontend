@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Mail } from '../../services/mail';
 
 @Component({
@@ -12,8 +12,8 @@ import { Mail } from '../../services/mail';
 export class MailDetail implements OnInit{
   route = inject(ActivatedRoute);
   mailService = inject(Mail);
+  router = inject(Router);
   mail: any = null;
-
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -23,6 +23,33 @@ export class MailDetail implements OnInit{
         error: () => alert('error loading mail')
       });
     }
+  }
+
+  replyMail(){
+    this.router.navigate(['/compose'],{
+      queryParams:{
+        to: this.mail.fromEmail,
+        subject: this.mail.subject,
+      }
+    });
+  }
+
+  forwardMail() {
+
+    const forwardBody = `
+---------- Forwarded message ---------
+From: ${this.mail.fromEmail}
+Date: ${this.mail.sentAt}
+Subject: ${this.mail.subject}
+
+${this.mail.body} `;
+
+    this.router.navigate(['/compose'], {
+      queryParams: {
+        subject: `Fwd: ${this.mail.subject}`, // Subject munnadi "Fwd:" serthurom
+        body: forwardBody  // Mulu message-ayum body-la podurom
+      }
+    });
   }
 
 }
